@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Back-end') {
       agent {
-        docker { image 'maven:3.9.14-adoptopenjdk-21' }
+        // Updated to official Temurin JDK 21 tag
+        docker { image 'maven:3.9.14-eclipse-temurin-21' }
       }
       steps {
         sh 'mvn --version'
@@ -11,6 +12,7 @@ pipeline {
     }
     stage('Front-end') {
       agent {
+        // This tag is correct; it uses the slim Alpine Linux base
         docker { image 'node:20-alpine' }
       }
       steps {
